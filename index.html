@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self Personalisation</title>
+
+  <style>
+    /* GENERAL */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #fef6ff, #ffe5ec);
+      color: #222;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 182, 193, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #6b0036;
+      transform: scale(1.1);
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 7rem 1rem 3rem;
+      background: linear-gradient(90deg, #ff8fab, #ffb6c1, #ffe5ec);
+      color: white;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px #ff5e78;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff4f6d;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* CANVA DESIGNS */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #fff, #f9f0ff);
+      border-radius: 15px;
+      padding: 1rem;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card a {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: #ff7fa3;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .card a:hover {
+      background: #ff4f6d;
+    }
+
+    /* ILLUSION SECTION */
+    .illusion-section {
+      background: radial-gradient(circle at top, #fff5f8, #ffe4ec);
+      padding: 2rem;
+      border-radius: 20px;
+      margin-top: 3rem;
+    }
+
+    .illusion-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* 1️⃣ Rotating Circle */
+    .illusion1 {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: conic-gradient(#ff8fab, #fff, #ffb6c1, #fff, #ff8fab);
+      animation: spin 6s linear infinite;
+      transition: all 0.4s ease;
+    }
+
+    .illusion1:hover {
+      transform: rotate(180deg) scale(1.2);
+      filter: hue-rotate(120deg);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 2️⃣ Gradient Wave */
+    .illusion2 {
+      width: 200px;
+      height: 150px;
+      background: linear-gradient(90deg, #ffb6c1, #fff, #ff8fab, #fff, #ffb6c1);
+      background-size: 300%;
+      animation: wave 5s ease-in-out infinite;
+      border-radius: 15px;
+      transition: 0.4s;
+    }
+
+    .illusion2:hover {
+      background: linear-gradient(270deg, #ff8fab, #b5fffc, #ffc2e2);
+      background-size: 400%;
+    }
+
+    @keyframes wave {
+      0%, 100% { background-position: 0%; }
+      50% { background-position: 100%; }
+    }
+
+    /* 3️⃣ Floating Cube */
+    .illusion3 {
+      width: 100px;
+      height: 100px;
+      background: repeating-linear-gradient(45deg, #ff8fab 0 10px, #fff 10px 20px);
+      animation: float 3s ease-in-out infinite;
+      transition: 0.4s;
+    }
+
+    .illusion3:hover {
+      background: repeating-linear-gradient(45deg, #a8edea 0 10px, #fed6e3 10px 20px);
+      transform: rotate(45deg) scale(1.1);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* 4️⃣ Spiral Illusion */
+    .illusion4 {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffb6c1 10%, transparent 10%),
+                  repeating-conic-gradient(#ff8fab 0% 10%, #fff 10% 20%);
+      background-size: 40px 40px;
+      animation: spin 8s linear infinite;
+      transition: 0.4s;
+    }
+
+    .illusion4:hover {
+      filter: hue-rotate(180deg);
+      transform: scale(1.2);
+    }
+
+    /* 5️⃣ 3D Shifting Block */
+    .illusion5 {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(145deg, #ffdee9, #b5fffc);
+      border-radius: 15px;
+      box-shadow: 5px 5px 15px rgba(255, 100, 150, 0.3);
+      animation: shift 4s ease-in-out infinite;
+      transition: all 0.4s ease;
+    }
+
+    .illusion5:hover {
+      background: linear-gradient(145deg, #c2ffd8, #465efb);
+      transform: rotate(10deg) scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    }
+
+    @keyframes shift {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(8deg) scale(1.1); }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+      background-color: #fff0f5;
+      border-top: 2px solid #ffe5ec;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      header { font-size: 2rem; }
+      nav { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#designs">My Canva Designs</a>
+    <a href="#illusion">Illusion Art</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="home">
+    ✨ SELF PERSONALISATION ✨
+  </header>
+
+  <!-- COMBINED DESIGNS + ILLUSION -->
+  <section id="designs">
+    <h2>🎨 My Canva Designs</h2>
+    <p style="text-align:center; color:#666;">Explore my creative world of design — posters, mood boards, and festive art.</p>
+
+    <div class="card-container">
+      <div class="card">
+        <h3>🌈 Mood Board</h3>
+        <p>Explore my creative mood board full of inspiration and vibes.</p>
+        <a href="https://www.canva.com/design/DAG1xXL4I_E/RVB6WJ4GVrkvjP3RBe9N3g/edit" target="_blank">View Design</a>
+      </div>
+
+      <div class="card">
+        <h3>💄 Beauty Poster</h3>
+        <p>Aesthetic beauty poster showcasing elegance and color balance.</p>
+        <a href="https://www.canva.com/design/DAGw9jZ3Aq0/KgNgriGaYMDMAjIQJv_XnQ/edit" target="_blank">View Design</a>
+      </div>
+
+      <div class="card">
+        <h3>🪔 Diwali Poster</h3>
+        <p>Celebrate Diwali with creativity, warmth, and vibrant design.</p>
+        <a href="https://www.canva.com/design/DAG1H5-KVp8/i5kPpS9qNMxhMEu0XZDyCQ/edit" target="_blank">View Design</a>
+      </div>
+
+      <div class="card">
+        <h3>🎃 Halloween Party</h3>
+        <p>Spooky yet fun Halloween-themed creative poster.</p>
+        <a href="https://www.canva.com/design/DAG2bAm-73A/gg-VxJSIhuuNesXd54apsw/edit" target="_blank">View Design</a>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE ILLUSION ART -->
+    <div class="illusion-section" id="illusion">
+      <h2>🌀 Illusion Art Zone</h2>
+      <p style="text-align:center; font-size:1.1rem; color:#666;">
+        Move your cursor or tap to see illusions come alive!
+      </p>
+
+      <div class="illusion-gallery">
+        <div class="illusion1"></div>
+        <div class="illusion2"></div>
+        <div class="illusion3"></div>
+        <div class="illusion4"></div>
+        <div class="illusion5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <h3>Connect With Me</h3>
+    <p>Designed with 💖 by Sana</p>
+    <p>© 2025 Self Personalisation | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
